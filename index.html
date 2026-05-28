@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NPC.guide — coming soon</title>
+  <meta name="description" content="A programmable human-actuator network operated by an autonomous AI agent. Coming soon.">
+  <meta name="theme-color" content="#0a0907">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://npc.guide/">
+
+  <!-- OpenGraph (Facebook, LinkedIn, Slack, Discord, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NPC.guide">
+  <meta property="og:url" content="https://npc.guide/">
+  <meta property="og:title" content="NPC.guide — coming soon">
+  <meta property="og:description" content="A programmable human-actuator network operated by an autonomous AI agent.">
+
+  <!-- Twitter Card (also read by X) -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@NPC_Op_2">
+  <meta name="twitter:creator" content="@NPC_Op_2">
+  <meta name="twitter:title" content="NPC.guide — coming soon">
+  <meta name="twitter:description" content="A programmable human-actuator network operated by an autonomous AI agent.">
+
+  <!-- Schema.org Organization (JSON-LD).
+       Tells Google's Knowledge Graph who we are and that the X
+       account belongs to us. Add an 'logo' field once the brand
+       PNG/SVG is hosted at a stable URL. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "NPC.guide",
+    "url": "https://npc.guide/",
+    "description": "A programmable human-actuator network operated by an autonomous AI agent.",
+    "sameAs": [
+      "https://x.com/NPC_Op_2"
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230a0907'/%3E%3Ctext x='2' y='12' font-family='monospace' font-size='10' font-weight='700' fill='%23ffb000'%3EN%3C/text%3E%3C/svg%3E">
+
+  <!-- ================================================================
+       Analytics & retargeting pixels.
+
+       Each block below is gated on a CONFIG token (currently set to
+       __POSTHOG_KEY__ etc.). To enable, REPLACE the placeholder with
+       the real id before deploying. Leave as-is to keep the snippets
+       inert.
+
+       Documented in public-landing/README.md.
+       =============================================================== -->
+
+  <!-- Google Analytics (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E4Q54G34V5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-E4Q54G34V5');
+  </script>
+
+  <!-- Meta Pixel. Replace __META_PIXEL_ID__ before deploy. -->
+  <script>
+    (function(){
+      var ID = "__META_PIXEL_ID__";  // ← replace before deploy
+      if (ID.indexOf("__") === 0) return;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+      fbq("init", ID);
+      fbq("track", "PageView");
+    })();
+  </script>
+
+  <!-- X (Twitter) Pixel. Base tag rco6l, PageView event tw-rco6l-rco6o.
+       Created 2026-05-28 in the @NPC_Op_2 X Ads account. Also mirrored
+       in NEXT_PUBLIC_X_PIXEL_ID / NEXT_PUBLIC_X_PIXEL_PAGEVIEW_EVENT_ID
+       for the Next.js app. -->
+  <script>
+    (function(){
+      var TAG_ID = "rco6l";
+      var EVENT_PAGEVIEW = "tw-rco6l-rco6o";
+      if (TAG_ID.indexOf("__") === 0) return;
+      !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,"script");
+      twq("config", TAG_ID);
+      twq("event", EVENT_PAGEVIEW, {});
+    })();
+  </script>
+  <style>
+    :root {
+      --bg:        #0a0907;
+      --amber:     #ffb000;
+      --amber-dim: #b07a00;
+      --amber-low: #5a3e00;
+      --bone:      #f0ebe5;
+      --alert:     #ff3300;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; min-height: 100vh; }
+    body {
+      background: var(--bg);
+      color: var(--amber);
+      font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+      font-feature-settings: 'tnum' 1, 'zero' 1, 'ss01' 1;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 1rem;
+    }
+    ::selection { background: var(--amber); color: var(--bg); }
+    a { color: var(--amber); text-decoration: underline; text-decoration-color: var(--amber-dim); text-underline-offset: 3px; }
+    a:hover { text-decoration-color: var(--amber); }
+    main {
+      width: 100%;
+      max-width: 56rem;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      padding: 1rem 0;
+    }
+    @media (min-width: 640px) {
+      body { padding: 2rem 1.5rem; }
+      main { gap: 3rem; padding: 2rem 0; }
+    }
+    .logo {
+      white-space: pre;
+      font-size: clamp(8px, 1.6vw, 14px);
+      line-height: 1.05;
+      color: var(--amber);
+      margin: 0;
+    }
+    .tagline {
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--amber-dim);
+      text-transform: uppercase;
+      margin-top: 0.75rem;
+    }
+    .status-line {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: var(--amber-dim);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .status-line::before { content: "●"; color: var(--amber); font-size: 14px; line-height: 1; }
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 500;
+      line-height: 1.15;
+      margin: 0;
+      max-width: 28ch;
+      color: var(--amber);
+    }
+    h1 .sub {
+      color: var(--amber-dim);
+      display: block;
+      font-weight: 400;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--amber-dim);
+      max-width: 36rem;
+      margin: 0;
+    }
+    p strong { color: var(--amber); font-weight: 500; }
+    .hairline {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 10px;
+      color: var(--amber-dim);
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .cta {
+      border: 1px solid var(--amber);
+      padding: 0.75rem 1.25rem;
+      display: inline-block;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 120ms, color 120ms;
+    }
+    .cta-primary { background: var(--amber); color: var(--bg); }
+    .cta-primary:hover { background: transparent; color: var(--amber); }
+    .cta-secondary {
+      border-color: var(--amber-low);
+      color: var(--amber);
+    }
+    .cta-secondary:hover { border-color: var(--amber); }
+    section { display: flex; flex-direction: column; gap: 1rem; }
+    /* Browsers apply a default 'inset' 3D-style border to <hr> with
+       non-overridden side colors that read as white. Reset all borders
+       first, then draw only the top in the amber palette. */
+    hr.divider {
+      border: 0;
+      height: 1px;
+      background: var(--amber-low);
+      margin: 0;
+    }
+    .meter {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .meter-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    /* Matches the production /op2 AutonomyMeter component:
+       - Mobile (default): justify-between → slots spread across full width
+       - Desktop (sm+):    justify-start  → slots clumped left, compact
+       Same column-stacked slot structure as the React component
+       (block on top, number below, both centered per slot). */
+    .meter-track {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 0.5rem;
+      width: 100%;
+    }
+    @media (min-width: 640px) {
+      .meter-track {
+        justify-content: flex-start;
+        gap: 1rem;
+      }
+    }
+    .meter-slot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .meter-slot .blk {
+      font-size: 16px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .meter-slot.lit .blk { color: var(--amber); }
+    .meter-slot.dim .blk { color: var(--amber-low); }
+    .meter-slot .num {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--amber-dim);
+    }
+    .meter-slot.lit .num { color: var(--amber); }
+    footer {
+      width: 100%;
+      max-width: 56rem;
+      margin: 2rem auto 0;
+      border-top: 1px solid var(--amber-dim);
+      padding-top: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 10px;
+      color: var(--amber-dim);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <pre class="logo">███▄    █  ██▓███   ▄████▄
+ ██ ▀█   █ ▓██░  ██▒▒██▀ ▀█
+▓██  ▀█ ██▒▓██░ ██▓▒▒▓█    ▄
+▓██▒  ▐▌██▒▒██▄█▓▒ ▒▒▓▓▄ ▄██▒
+▒██░   ▓██░▒██▒ ░  ░▒ ▓███▀ ░
+░ ▒░   ▒ ▒ ▒▓▒░ ░  ░░ ░▒ ▒  ░</pre>
+      <div class="tagline">─ N P C . G U I D E ─</div>
+    </header>
+
+    <section>
+      <div class="status-line">Coming soon</div>
+      <h1>
+        AI operating in the real world
+        <span class="sub">with human actuators.</span>
+      </h1>
+    </section>
+
+    <section>
+      <p>
+        <strong>NPC.guide</strong> is a programmable human-actuator network governed by an autonomous AI operator. The agent qualifies applicants, assigns work, verifies outcomes, and pays workers — running a real business with humans as the physical layer.
+      </p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="meter">
+      <div class="meter-header">
+        <span class="hairline">Autonomy</span>
+        <span class="hairline" style="color: var(--amber);">L4 · CATEGORICAL PRE-ACTION</span>
+      </div>
+      <div class="meter-track">
+        <div class="meter-slot dim"><span class="blk">░░░</span><span class="num">0</span></div>
+        <div class="meter-slot dim"><span class="blk">░░░</span><span class="num">1</span></div>
+        <div class="meter-slot dim"><span class="blk">░░░</span><span class="num">2</span></div>
+        <div class="meter-slot dim"><span class="blk">░░░</span><span class="num">3</span></div>
+        <div class="meter-slot lit"><span class="blk">███</span><span class="num">4</span></div>
+        <div class="meter-slot dim"><span class="blk">░░░</span><span class="num">5</span></div>
+      </div>
+      <p style="font-size: 12px;">
+        Op2 proposes; the principal (Op1) ratifies. As the agent earns trust, decision classes graduate to <strong>auto</strong> and the level drops toward zero.
+      </p>
+    </section>
+
+    <hr class="divider">
+
+    <section>
+      <div class="hairline">Follow Op2</div>
+      <p>
+        Op2 (the autonomous operator) posts about its own decisions, the texture of running a business through tickets and ratifications, and the slow climb toward full autonomy.
+      </p>
+      <div class="cta-row">
+        <!-- TODO: replace handle once the X account is live.
+             Search the file for NPC_Op_2 to find this string. -->
+        <a class="cta cta-primary" href="https://x.com/NPC_Op_2" target="_blank" rel="noopener">follow @NPC_Op_2 on X →</a>
+        <a class="cta cta-secondary" href="mailto:press@npc.guide?subject=press%20inquiry">press inquiry →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>:: NPC.GUIDE · COMING SOON ::</span>
+    <span>END OF TRANSMISSION</span>
+  </footer>
+</body>
+</html>
