@@ -3,345 +3,330 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NPC.guide — coming soon</title>
-  <meta name="description" content="A programmable human-actuator network operated by an autonomous AI agent. Coming soon.">
+  <title>NPC.guide — Real-world verification at a fraction of the cost.</title>
+  <meta name="description" content="An early-stage Cleveland startup. An autonomous AI operator dispatches a verified human to real-world work in Cuyahoga County, confirms the job, and pays them.">
   <meta name="theme-color" content="#0a0907">
-  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://npc.guide/">
-
-  <!-- OpenGraph (Facebook, LinkedIn, Slack, Discord, etc.) -->
+  <meta name="robots" content="index, follow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NPC.guide">
   <meta property="og:url" content="https://npc.guide/">
-  <meta property="og:title" content="NPC.guide — coming soon">
-  <meta property="og:description" content="A programmable human-actuator network operated by an autonomous AI agent.">
-
-  <!-- Twitter Card (also read by X) -->
-  <meta name="twitter:card" content="summary">
+  <meta property="og:title" content="NPC.guide — an AI operator that puts real people on real-world work">
+  <meta property="og:description" content="An early-stage Cleveland startup, now operating in Cuyahoga County: an autonomous agent dispatches a verified human, confirms the work, and pays them.">
+  <meta property="og:image" content="https://npc.guide/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="NPC.guide — real-world verification at a fraction of the cost">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@NPC_Op_2">
   <meta name="twitter:creator" content="@NPC_Op_2">
-  <meta name="twitter:title" content="NPC.guide — coming soon">
-  <meta name="twitter:description" content="A programmable human-actuator network operated by an autonomous AI agent.">
-
-  <!-- Schema.org Organization (JSON-LD).
-       Tells Google's Knowledge Graph who we are and that the X
-       account belongs to us. Add an 'logo' field once the brand
-       PNG/SVG is hosted at a stable URL. -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "NPC.guide",
-    "url": "https://npc.guide/",
-    "description": "A programmable human-actuator network operated by an autonomous AI agent.",
-    "sameAs": [
-      "https://x.com/NPC_Op_2"
-    ]
-  }
-  </script>
+  <meta name="twitter:title" content="NPC.guide — an AI operator that puts real people on real-world work">
+  <meta name="twitter:description" content="An early-stage Cleveland startup, now operating in Cuyahoga County: an autonomous agent dispatches a verified human, confirms the work, and pays them.">
+  <meta name="twitter:image" content="https://npc.guide/og.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230a0907'/%3E%3Ctext x='2' y='12' font-family='monospace' font-size='10' font-weight='700' fill='%23ffb000'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="/logo.png">
 
-  <!-- ================================================================
-       Analytics & retargeting pixels.
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"Organization","@id":"https://npc.guide/#org","name":"NPC.guide","url":"https://npc.guide/","logo":"https://npc.guide/logo.png","slogan":"An AI operator that puts real people on real-world work.","description":"An early-stage Cleveland startup: an autonomous AI operator dispatches verified humans to real-world tasks in Cuyahoga County, confirms the work, and pays them.","areaServed":{"@type":"AdministrativeArea","name":"Cuyahoga County, Ohio"},"sameAs":["https://x.com/NPC_Op_2"]},
+    {"@type":"WebSite","@id":"https://npc.guide/#website","url":"https://npc.guide/","name":"NPC.guide","publisher":{"@id":"https://npc.guide/#org"}}
+  ]}
+  </script>
 
-       Each block below is gated on a CONFIG token (currently set to
-       __POSTHOG_KEY__ etc.). To enable, REPLACE the placeholder with
-       the real id before deploying. Leave as-is to keep the snippets
-       inert.
+  <!-- Audience hero select (?a=work → worker variant; default → business/vision).
+       Runs before <body> paints so the right hero shows with no flash.
+       NOTE: this is content selection only — campaign attribution stays in
+       separate UTM params; do not key hero content off campaign IDs. -->
+  <script>
+    (function(){try{
+      var a=new URLSearchParams(location.search).get('a');
+      if(a==='work') document.documentElement.setAttribute('data-aud','work');
+    }catch(e){}})();
+  </script>
 
-       Documented in public-landing/README.md.
-       =============================================================== -->
-
+  <!-- Production-only analytics: GA configures + events fire ONLY on npc.guide.
+       On localhost / file:// / preview hosts, NPC_PROD is false so no data
+       reaches the property. This is the reliable filter for a static/file://
+       dev flow (GA4's dashboard internal-traffic filter is IP-based and won't
+       catch file://). Optionally add the dashboard filter as a backstop. -->
+  <script>
+    window.NPC_PROD = /(^|\.)npc\.guide$/.test(location.hostname);
+  </script>
   <!-- Google Analytics (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-E4Q54G34V5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-E4Q54G34V5');
+    if (window.NPC_PROD) {
+      gtag('js', new Date());
+      gtag('config', 'G-E4Q54G34V5');
+    }
   </script>
 
-  <!-- Meta Pixel. Replace __META_PIXEL_ID__ before deploy. -->
+  <!-- X (Twitter) retargeting Pixel — base rco6l, PageView tw-rco6l-rco6o
+       (@NPC_Op_2 X Ads). Prod-only via NPC_PROD so dev never feeds the audience. -->
   <script>
-    (function(){
-      var ID = "__META_PIXEL_ID__";  // ← replace before deploy
-      if (ID.indexOf("__") === 0) return;
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
-      fbq("init", ID);
-      fbq("track", "PageView");
-    })();
-  </script>
-
-  <!-- X (Twitter) Pixel. Base tag rco6l, PageView event tw-rco6l-rco6o.
-       Created 2026-05-28 in the @NPC_Op_2 X Ads account. Also mirrored
-       in NEXT_PUBLIC_X_PIXEL_ID / NEXT_PUBLIC_X_PIXEL_PAGEVIEW_EVENT_ID
-       for the Next.js app. -->
-  <script>
-    (function(){
-      var TAG_ID = "rco6l";
-      var EVENT_PAGEVIEW = "tw-rco6l-rco6o";
-      if (TAG_ID.indexOf("__") === 0) return;
+    if (window.NPC_PROD) (function(){
+      var TAG_ID="rco6l", EVENT_PAGEVIEW="tw-rco6l-rco6o";
       !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,"script");
-      twq("config", TAG_ID);
-      twq("event", EVENT_PAGEVIEW, {});
+      twq("config",TAG_ID);
+      twq("event",EVENT_PAGEVIEW,{});
     })();
   </script>
-  <style>
-    :root {
-      --bg:        #0a0907;
-      --amber:     #ffb000;
-      --amber-dim: #b07a00;
-      --amber-low: #5a3e00;
-      --bone:      #f0ebe5;
-      --alert:     #ff3300;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; min-height: 100vh; }
-    body {
-      background: var(--bg);
-      color: var(--amber);
-      font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
-      font-feature-settings: 'tnum' 1, 'zero' 1, 'ss01' 1;
-      -webkit-font-smoothing: antialiased;
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem 1rem;
-    }
-    ::selection { background: var(--amber); color: var(--bg); }
-    a { color: var(--amber); text-decoration: underline; text-decoration-color: var(--amber-dim); text-underline-offset: 3px; }
-    a:hover { text-decoration-color: var(--amber); }
-    main {
-      width: 100%;
-      max-width: 56rem;
-      margin: 0 auto;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      padding: 1rem 0;
-    }
-    @media (min-width: 640px) {
-      body { padding: 2rem 1.5rem; }
-      main { gap: 3rem; padding: 2rem 0; }
-    }
-    .logo {
-      white-space: pre;
-      font-size: clamp(8px, 1.6vw, 14px);
-      line-height: 1.05;
-      color: var(--amber);
-      margin: 0;
-    }
-    .tagline {
-      font-size: 10px;
-      letter-spacing: 0.4em;
-      color: var(--amber-dim);
-      text-transform: uppercase;
-      margin-top: 0.75rem;
-    }
-    .status-line {
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 11px;
-      color: var(--amber-dim);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .status-line::before { content: "●"; color: var(--amber); font-size: 14px; line-height: 1; }
-    h1 {
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 500;
-      line-height: 1.15;
-      margin: 0;
-      max-width: 28ch;
-      color: var(--amber);
-    }
-    h1 .sub {
-      color: var(--amber-dim);
-      display: block;
-      font-weight: 400;
-    }
-    p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--amber-dim);
-      max-width: 36rem;
-      margin: 0;
-    }
-    p strong { color: var(--amber); font-weight: 500; }
-    .hairline {
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 10px;
-      color: var(--amber-dim);
-    }
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-    .cta {
-      border: 1px solid var(--amber);
-      padding: 0.75rem 1.25rem;
-      display: inline-block;
-      text-decoration: none;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: background 120ms, color 120ms;
-    }
-    .cta-primary { background: var(--amber); color: var(--bg); }
-    .cta-primary:hover { background: transparent; color: var(--amber); }
-    .cta-secondary {
-      border-color: var(--amber-low);
-      color: var(--amber);
-    }
-    .cta-secondary:hover { border-color: var(--amber); }
-    section { display: flex; flex-direction: column; gap: 1rem; }
-    /* Browsers apply a default 'inset' 3D-style border to <hr> with
-       non-overridden side colors that read as white. Reset all borders
-       first, then draw only the top in the amber palette. */
-    hr.divider {
-      border: 0;
-      height: 1px;
-      background: var(--amber-low);
-      margin: 0;
-    }
-    .meter {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .meter-header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.5rem;
-    }
-    /* Matches the production /op2 AutonomyMeter component:
-       - Mobile (default): justify-between → slots spread across full width
-       - Desktop (sm+):    justify-start  → slots clumped left, compact
-       Same column-stacked slot structure as the React component
-       (block on top, number below, both centered per slot). */
-    .meter-track {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 0.5rem;
-      width: 100%;
-    }
-    @media (min-width: 640px) {
-      .meter-track {
-        justify-content: flex-start;
-        gap: 1rem;
-      }
-    }
-    .meter-slot {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.25rem;
-    }
-    .meter-slot .blk {
-      font-size: 16px;
-      line-height: 1;
-      letter-spacing: -0.04em;
-    }
-    .meter-slot.lit .blk { color: var(--amber); }
-    .meter-slot.dim .blk { color: var(--amber-low); }
-    .meter-slot .num {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--amber-dim);
-    }
-    .meter-slot.lit .num { color: var(--amber); }
-    footer {
-      width: 100%;
-      max-width: 56rem;
-      margin: 2rem auto 0;
-      border-top: 1px solid var(--amber-dim);
-      padding-top: 1rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 10px;
-      color: var(--amber-dim);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-  </style>
+
+  <link rel="stylesheet" href="landing.css">
 </head>
 <body>
-  <main>
-    <header>
-      <pre class="logo">███▄    █  ██▓███   ▄████▄
+
+<!-- ── TOP NAV ── -->
+<nav class="wrap topbar">
+  <a href="/" aria-label="NPC.guide home"><pre class="logo">███▄    █  ██▓███   ▄████▄
  ██ ▀█   █ ▓██░  ██▒▒██▀ ▀█
 ▓██  ▀█ ██▒▓██░ ██▓▒▒▓█    ▄
 ▓██▒  ▐▌██▒▒██▄█▓▒ ▒▒▓▓▄ ▄██▒
 ▒██░   ▓██░▒██▒ ░  ░▒ ▓███▀ ░
-░ ▒░   ▒ ▒ ▒▓▒░ ░  ░░ ░▒ ▒  ░</pre>
-      <div class="tagline">─ N P C . G U I D E ─</div>
-    </header>
+░ ▒░   ▒ ▒ ▒▓▒░ ░  ░░ ░▒ ▒  ░</pre></a>
+  <span class="navlinks">
+    <a href="/">home</a>
+    <a href="about.html">about</a>
+  </span>
+</nav>
 
-    <section>
-      <div class="status-line">Coming soon</div>
-      <h1>
-        AI operating in the real world
-        <span class="sub">with human actuators.</span>
-      </h1>
-    </section>
-
-    <section>
-      <p>
-        <strong>NPC.guide</strong> is a programmable human-actuator network governed by an autonomous AI operator. The agent qualifies applicants, assigns work, verifies outcomes, and pays workers — running a real business with humans as the physical layer.
-      </p>
-    </section>
-
-    <hr class="divider">
-
-    <section class="meter">
-      <div class="meter-header">
-        <span class="hairline">Autonomy</span>
-        <span class="hairline" style="color: var(--amber);">L4 · CATEGORICAL PRE-ACTION</span>
+<!-- ── HERO ── -->
+<header id="hero">
+  <div class="inner">
+    <figure class="mapwrap">
+      <img class="heromap" src="cuyahoga.svg" alt="Cuyahoga County, Ohio — municipalities, with the city of Cleveland highlighted">
+      <figcaption class="mapcap hairline">:: cuyahoga county · cleveland ::</figcaption>
+    </figure>
+    <div class="herocopy">
+      <!-- DEFAULT (untagged / direct / organic / business+vision). Crawlable canonical hero. -->
+      <div class="aud aud-hire">
+        <h1>Real-world verification at a fraction of the&nbsp;cost.</h1>
+        <p>We're an early-stage Cleveland startup. We are currently seeking pilot program partners within Cuyahoga county.</p>
+        <div class="herocta">
+          <a class="btn" href="#havework">How much could you save? →</a>
+          <a class="btn ghost" href="#needwork">Get paid to be where the work is →</a>
+        </div>
       </div>
-      <div class="meter-track">
-        <div class="meter-slot dim"><span class="blk">░░░</span><span class="num">0</span></div>
-        <div class="meter-slot dim"><span class="blk">░░░</span><span class="num">1</span></div>
-        <div class="meter-slot dim"><span class="blk">░░░</span><span class="num">2</span></div>
-        <div class="meter-slot dim"><span class="blk">░░░</span><span class="num">3</span></div>
-        <div class="meter-slot lit"><span class="blk">███</span><span class="num">4</span></div>
-        <div class="meter-slot dim"><span class="blk">░░░</span><span class="num">5</span></div>
+      <!-- ?a=work (worker traffic from ads / organic social). Honest waitlist framing — recruitment is gated. -->
+      <div class="aud aud-work">
+        <h1>Get paid to be where the work is.</h1>
+        <p>Short, local, verifiable tasks near you — dispatched by an autonomous operator that confirms the work and pays you automatically. We open area by area; join the waitlist and we'll notify you when Cuyahoga County goes live.</p>
+        <div class="herocta">
+          <a class="btn" href="#needwork">Join the actuator waitlist →</a>
+          <a class="btn ghost" href="#havework">Have work to dispatch? →</a>
+        </div>
       </div>
-      <p style="font-size: 12px;">
-        Op2 proposes; the principal (Op1) ratifies. As the agent earns trust, decision classes graduate to <strong>auto</strong> and the level drops toward zero.
-      </p>
-    </section>
+    </div>
+  </div>
+</header>
 
-    <hr class="divider">
+<!-- ── HAVE WORK (businesses · audience A — pilot partners) · textured (dither) band ── -->
+<section class="band textured" id="havework"><div class="wrap">
+  <div class="hairline eyebrow">:: i have work · businesses ::</div>
+  <h2 class="head">Dispatch a verified human, anywhere in our service area.</h2>
+  <p class="lede">
+    Retail audits, merchandising and price checks, verified distribution, field data. It's the work brand-execution and on-demand-staffing firms charge a premium to coordinate. <strong>Proof of delivery is built into every task</strong>, not sold as an add-on.
+  </p>
+  <ul class="pts">
+    <li>On-demand retail merchandising you can actually trust. Get verified, reliable, local professionals to audit, stock and perfect your shelves with real-time proof of execution.</li>
+    <li>The end of phantom distribution. Deploy verified street teams for fliers, stickers & door hanger campaigns with digital tracking & completion verification</li>
+  </ul>
 
-    <section>
-      <div class="hairline">Follow Op2</div>
-      <p>
-        Op2 (the autonomous operator) posts about its own decisions, the texture of running a business through tickets and ratifications, and the slow climb toward full autonomy.
-      </p>
-      <div class="cta-row">
-        <!-- TODO: replace handle once the X account is live.
-             Search the file for NPC_Op_2 to find this string. -->
-        <a class="cta cta-primary" href="https://x.com/NPC_Op_2" target="_blank" rel="noopener">follow @NPC_Op_2 on X →</a>
-        <a class="cta cta-secondary" href="mailto:press@npc.guide?subject=press%20inquiry">press inquiry →</a>
+  <!-- verification-overhead calculator — models QA/review labor only, not actuator pay -->
+  <div class="calc">
+    <div class="calc-controls">
+      <div class="calc-head">
+        <h3>Verification overhead, automated</h3>
+        <p class="calc-sub">Calculate what it costs to confirm field work is actually done. We build proof into every task instead of billed as a premium.</p>
       </div>
-    </section>
-  </main>
+      <div class="calc-row">
+        <div class="calc-label"><label for="taskVolume">Proof photos to verify</label><span id="taskVolumeVal" class="calc-val">5,000</span></div>
+        <input class="calc-range" type="range" id="taskVolume" min="500" max="25000" step="500" value="5000">
+        <div class="calc-scale"><span>500</span><span>25,000</span></div>
+      </div>
+      <div class="calc-row">
+        <div class="calc-label"><label for="humanWage">Human reviewer wage</label><span id="humanWageVal" class="calc-val">$20/hr</span></div>
+        <input class="calc-range" type="range" id="humanWage" min="15" max="40" step="1" value="20">
+        <div class="calc-scale"><span>$15/hr</span><span>$40/hr</span></div>
+      </div>
+      <div class="calc-row">
+        <div class="calc-label"><label for="reviewTime">Manual review time / photo</label><span id="reviewTimeVal" class="calc-val">2.0 min</span></div>
+        <input class="calc-range" type="range" id="reviewTime" min="0.5" max="5" step="0.5" value="2">
+        <div class="calc-scale"><span>30 sec</span><span>5 min</span></div>
+      </div>
+      <p class="calc-note">▸ Automated verification billed at a baseline ~$0.0025 per multimodal check. Models QA/review cost only — not the actuator's pay to perform &amp; document the task.</p>
+    </div>
+    <div class="calc-result">
+      <div>
+        <div class="hairline" style="color:var(--amber);">:: verification overhead saved ::</div>
+        <div class="calc-big"><span id="totalSavings">$3,320</span><span id="percentageSaved" class="calc-pct">≈98% less</span></div>
+        <div class="calc-bars">
+          <div class="calc-bar">
+            <div class="calc-barlbl"><span>Manual photo review</span><span id="humanCostLabel">$3,333.33</span></div>
+            <div class="calc-track"><div id="humanBar" class="calc-fill alert" style="width:100%"></div></div>
+          </div>
+          <div class="calc-bar">
+            <div class="calc-barlbl"><span>Automated verification</span><span id="geminiCostLabel">$12.50</span></div>
+            <div class="calc-track"><div id="geminiBar" class="calc-fill amber" style="width:4%"></div></div>
+          </div>
+        </div>
+      </div>
+      <p id="summaryText" class="calc-summary">Automating photo-QA removes the manual review bottleneck — the cost of proof scales to near-zero, so verified delivery stays the default, not a premium.</p>
+    </div>
+  </div>
 
-  <footer>
-    <span>:: NPC.GUIDE · COMING SOON ::</span>
-    <span>END OF TRANSMISSION</span>
-  </footer>
+  <div class="panel">
+    <h3>Start a pilot conversation</h3>
+    <p class="note">Leave your work email and we'll reach out to scope a small paid pilot — then show you the verified result.</p>
+    <form class="cap" data-list="customers">
+      <input type="email" name="email" placeholder="work email" required>
+      <input type="text" name="company" placeholder="company" required>
+      <button class="btn" type="submit">Request a pilot →</button>
+      <div class="formmsg"></div>
+    </form>
+  </div>
+</div></section>
+
+<!-- ── NEED WORK (actuators · audience B — prospective workers) ── -->
+<section class="band" id="needwork"><div class="wrap">
+  <div class="hairline eyebrow">:: i need work · actuators ::</div>
+  <h2 class="head">Get paid to be where the work is.</h2>
+  <p class="lede">
+    Short, location-bound tasks you pick up near you — a photo, a check, a placement, a drop. You do the work; the system verifies it and credits you <strong>automatically</strong>. No boss, no shift, no back office to chase — the operator dispatches the task and confirms it's done.
+  </p>
+  <ul class="pts">
+    <li>Earn while helping stress-test a real-world AI pipeline</li>
+    <li>Verified by photo / GPS / public infrastructure, so you're credited fairly and automatically</li>
+    <li>Paid out to a card you can spend anywhere</li>
+  </ul>
+  <div class="panel">
+    <h3>Join the application waitlist</h3>
+    <p class="note">We open area by area. Tell us where you are and we'll reach out when your zone goes live.</p>
+    <form class="cap" data-list="actuators">
+      <input type="email" name="email" placeholder="email" required>
+      <input type="text" name="zip" placeholder="zip / area" required>
+      <button class="btn" type="submit">Notify me when my area opens</button>
+      <div class="formmsg"></div>
+    </form>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <p class="creditblurb">NPC.guide is an entry in the <strong>Build with Gemini</strong> XPRIZE competition, submitted on Devpost. Google Gemini provides the multimodal verification that confirms real-world work at the core of the operation.</p>
+  <!-- TODO: replace these text wordmarks with each program's official logo (SVG),
+       observing their brand / clear-space / color usage guidelines. -->
+  <div class="credits">
+    <span class="credit"><span class="spark">✦</span> Google Gemini</span>
+    <span class="credit">XPRIZE</span>
+    <span class="credit">Devpost</span>
+  </div>
+</div></footer>
+
+<script>
+  // Lead capture → Google Sheets via Apps Script web app (no-cors FormData POST,
+  // mirrors /var/www/fidgetfeed). Inert until __APPS_SCRIPT_URL__ is set to the
+  // deployed /exec URL. Apps Script source: scripts/appscript-signup.js (in the
+  // monorepo, NOT this served dir — paste into the target Sheet ▸ Extensions ▸
+  // Apps Script, deploy as Web App, paste the /exec URL into APPS_SCRIPT_URL).
+  (function(){
+    const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxSfd8lwlEnD_Pfxm13nWH5hlqtEEyUYpZxAr56jKuKC4-BV_FHe8york76xNrTRtN2WQ/exec";
+    const FORM_TOKEN="npc-guide-signup-2026";        // must match REQUIRED_TOKEN in appscript-signup.js
+    const qp=new URLSearchParams(location.search);
+    const aud=()=>qp.get("a")||"";
+    // analytics: prod-only (window.NPC_PROD set in <head>), never on dev/file://
+    const track=(n,p)=>{ if(window.NPC_PROD && typeof gtag==="function") try{gtag('event',n,p||{});}catch(_){} };
+    document.querySelectorAll("form.cap").forEach(f=>{
+      const list=f.dataset.list;
+      f.addEventListener("focusin",function once(){ track('form_start',{form:list}); f.removeEventListener("focusin",once); });
+      f.addEventListener("submit",async e=>{
+        e.preventDefault(); const msg=f.querySelector(".formmsg");
+        if(APPS_SCRIPT_URL.indexOf("__")===0){ msg.textContent="◦ signup opens shortly — check back soon."; return; }
+        const fd=new FormData(f);
+        fd.append("list",list);
+        fd.append("audience",aud());
+        fd.append("utm_source",qp.get("utm_source")||"");
+        fd.append("utm_medium",qp.get("utm_medium")||"");
+        fd.append("utm_campaign",qp.get("utm_campaign")||"");
+        fd.append("page",location.href);
+        fd.append("referrer",document.referrer);
+        fd.append("ua",navigator.userAgent);
+        fd.append("origin",location.origin);
+        fd.append("token",FORM_TOKEN);
+        msg.textContent="◦ sending…";
+        try{
+          await fetch(APPS_SCRIPT_URL,{method:"POST",body:fd,mode:"no-cors"});  // opaque response → assume ok on resolve
+          f.reset(); msg.textContent="✓ received — we'll be in touch.";
+          if(list==="customers") track('generate_lead',{form:'customers', audience:aud(), calculator_used:!!window.__calcEngaged});
+          else track('waitlist_signup',{form:'actuators', audience:aud()});
+        }catch(_){ msg.textContent="× network error — try again."; track('form_error',{form:list}); }
+      });
+    });
+  })();
+</script>
+
+<script>
+  // verification-overhead calculator (audience A). Models QA/review labor only —
+  // NOT the actuator's pay to perform & document the task. Honest framing:
+  // the agent automating photo-QA is "verification is the default, not a premium."
+  (function(){
+    const $ = id => document.getElementById(id);
+    const tasksIn=$('taskVolume'), wageIn=$('humanWage'), timeIn=$('reviewTime');
+    if(!tasksIn) return;
+    const tasksLbl=$('taskVolumeVal'), wageLbl=$('humanWageVal'), timeLbl=$('reviewTimeVal');
+    const savingsOut=$('totalSavings'), pctOut=$('percentageSaved');
+    const humanCostLbl=$('humanCostLabel'), aiCostLbl=$('geminiCostLabel');
+    const hBar=$('humanBar'), gBar=$('geminiBar'), txt=$('summaryText');
+    const AICOST=0.0025;
+    const money=n=>n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    const track=(n,p)=>{ if(window.NPC_PROD && typeof gtag==="function") try{gtag('event',n,p||{});}catch(_){} };
+    function compute(){
+      const t=parseInt(tasksIn.value), w=parseInt(wageIn.value), m=parseFloat(timeIn.value);
+      const humanHours=(t*m)/60, humanTotal=humanHours*w, aiTotal=t*AICOST;
+      return {t,w,m,humanHours,humanTotal,aiTotal,saved:humanTotal-aiTotal,pct:humanTotal?((humanTotal-aiTotal)/humanTotal*100):0};
+    }
+    function update(){
+      const c=compute();
+      tasksLbl.textContent=c.t.toLocaleString();
+      wageLbl.textContent='$'+c.w+'/hr';
+      timeLbl.textContent=c.m.toFixed(1)+' min';
+      savingsOut.textContent = c.saved>=1000 ? '$'+Math.round(c.saved).toLocaleString() : '$'+c.saved.toFixed(2);
+      pctOut.textContent='≈'+c.pct.toFixed(1)+'% less';
+      humanCostLbl.textContent='$'+money(c.humanTotal);
+      aiCostLbl.textContent='$'+money(c.aiTotal);
+      const max=Math.max(c.humanTotal,c.aiTotal);
+      hBar.style.width=((c.humanTotal/max)*100)+'%';
+      gBar.style.width=Math.max((c.aiTotal/max)*100,2)+'%';
+      txt.innerHTML=`Automating photo-QA confirms <strong>${c.humanHours.toLocaleString('en-US',{maximumFractionDigits:1})} hours</strong> of manual review for about <strong>$${money(c.aiTotal)}</strong>. The cost of proof scales to near-zero, so verified delivery stays the default — not a premium.`;
+    }
+    // ── instrumentation (prod-only via track) ──
+    let engaged=false;
+    function onInput(){
+      update();
+      if(!engaged){ engaged=true; window.__calcEngaged=true; track('calculator_engage'); }  // first interaction = key engagement signal
+    }
+    function onCommit(ev){                                                                    // 'change' = value committed (slider released); naturally debounced
+      const c=compute();
+      track('calculator_adjust',{
+        control:ev.target.id, value:parseFloat(ev.target.value),
+        tasks:c.t, wage_per_hr:c.w, review_min:c.m,
+        manual_cost_usd:Math.round(c.humanTotal), automated_cost_usd:Math.round(c.aiTotal*100)/100,
+        saved_usd:Math.round(c.saved), pct_saved:Math.round(c.pct*10)/10
+      });
+    }
+    [tasksIn,wageIn,timeIn].forEach(el=>{ el.addEventListener('input',onInput); el.addEventListener('change',onCommit); });
+    const calc=document.querySelector('.calc');                                              // impression: once at 50% visible
+    if(calc && 'IntersectionObserver' in window){
+      const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ track('calculator_view'); io.disconnect(); } }),{threshold:0.5});
+      io.observe(calc);
+    }
+    update();
+  })();
+</script>
 </body>
 </html>

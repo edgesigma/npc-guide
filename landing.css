@@ -1,0 +1,173 @@
+/* NPC.guide Phase-2 landing — shared styles (phase2.html + how-it-works.html). */
+:root{
+  --bg:#0a0907; --amber:#ffb000; --amber-dim:#b07a00; --amber-low:#5a3e00;
+  --bone:#f0ebe5; --alert:#ff3300; --ink:#15120d; --ink-soft:#2a2113;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg); color:var(--amber);
+  font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,monospace;
+  font-feature-settings:'tnum' 1,'zero' 1; -webkit-font-smoothing:antialiased;
+  line-height:1.6;
+}
+::selection{background:var(--amber); color:var(--bg);}
+a{color:var(--amber); text-decoration:underline; text-decoration-color:var(--amber-dim); text-underline-offset:3px;}
+a:hover{text-decoration-color:var(--amber);}
+.wrap{width:100%; max-width:56rem; margin:0 auto; padding:0 1.1rem;}
+.hairline{letter-spacing:.14em; text-transform:uppercase; font-size:10px; color:var(--amber-dim);}
+h1,h2,h3{font-weight:500; margin:0; letter-spacing:.01em;}
+
+/* ── HERO ───────────────────────────────────────────────── */
+/* Visual focus = CUYAHOGA COUNTY municipal map (cuyahoga.svg): white
+   boundary mesh on the brand-dark fills (which match the page bg, so the
+   map floats on black), with the city of CLEVELAND lit amber. Used as a
+   crisp inline <img> in both layouts — banner on mobile, left column on
+   desktop with the copy in the right column. */
+#hero{position:relative; overflow:hidden; min-height:auto;
+  display:flex; flex-direction:column; justify-content:flex-start;
+  padding:1.6rem 1.1rem 3rem; background:var(--bg);}
+#hero .inner{position:relative; z-index:1; width:100%; max-width:56rem; margin:0 auto;}
+.mapwrap{margin:.4rem auto 1.6rem; max-width:30rem;}
+.heromap{display:block; width:100%; height:auto;}
+.mapcap{text-align:center; margin:.7rem 0 0; color:var(--amber-dim);}
+/* brand mark = small glyph logo; in normal flow above the map on mobile */
+.brandmark{margin:0 0 .4rem;}
+pre.logo{white-space:pre; font-size:clamp(6px,1.5vw,9px); line-height:1.05;
+  color:var(--amber); margin:0; font-weight:600; opacity:.92;}
+.herocopy{max-width:42ch;}
+#hero h1{font-size:clamp(1.7rem,5.4vw,2.6rem); line-height:1.14; color:var(--bone); margin:.5rem 0 0; max-width:20ch;}
+#hero p{font-size:clamp(13px,2.1vw,15px); line-height:1.7; color:var(--amber-dim); max-width:44ch; margin:1.1rem 0 0; font-weight:500;}
+.herocta{display:flex; flex-direction:column; gap:.7rem; margin-top:1.8rem; max-width:30rem;}
+.herocta .btn{text-transform:none; letter-spacing:.01em; font-size:13.5px; padding:.95rem 1.2rem;}
+@media(min-width:560px){.herocta{flex-direction:row; flex-wrap:wrap;}}
+/* audience hero variants: default = business/vision (.aud-hire);
+   ?a=work flips to the worker variant (.aud-work). One shows at a time. */
+.aud-work{display:none;}
+html[data-aud="work"] .aud-hire{display:none;}
+html[data-aud="work"] .aud-work{display:block;}
+/* ── desktop: county map LEFT column, copy RIGHT column ── */
+@media (min-width:880px){
+  #hero{min-height:max(82vh,640px); padding:9vh 1.5rem; justify-content:center;}
+  #hero .inner{display:grid; grid-template-columns:1.05fr 1fr; gap:3rem; align-items:center; max-width:68rem;}
+  .mapwrap{grid-column:1; max-width:100%; margin:0;}
+  .brandmark{position:absolute; top:1.2rem; left:1.2rem; z-index:2; margin:0;}
+  .herocopy{grid-column:2; max-width:44ch;}
+}
+
+/* ── top nav (site navigation, both pages) ──────────────── */
+.topbar{display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
+  padding-top:1.4rem; padding-bottom:1.1rem; border-bottom:1px solid #221d15;}
+.topbar a{text-decoration:none;}
+.topbar > a{display:flex; flex:0 0 auto; align-items:center;}   /* logo anchor cleanly wraps the multi-line <pre> */
+.navlinks{display:flex; flex:0 0 auto; gap:2rem; align-items:center;
+  letter-spacing:.12em; text-transform:uppercase; font-size:11px;}
+.navlinks a{color:var(--amber-dim);}
+.navlinks a:hover{color:var(--amber);}
+
+/* ── shared section ─────────────────────────────────────── */
+section.band{padding:3.4rem 0; border-top:1px solid var(--amber-low);}
+section.band:first-of-type{border-top:0;}
+.eyebrow{color:var(--amber);}
+.head{font-size:clamp(1.3rem,4.2vw,2rem); color:var(--bone); margin:.5rem 0 0; max-width:22ch;}
+.lede{font-size:14px; line-height:1.75; color:var(--amber-dim); max-width:54ch; margin:1rem 0 0;}
+.lede strong{color:var(--amber); font-weight:500;}
+
+/* ── textured (mid) section — a dim half-tone glyph field (dither-tile.png),
+   seamless-tiling, breaks up the dark scroll while staying in the amber-CRT
+   idiom (no jarring light band). Text keeps the normal light-on-dark scheme;
+   the dark .calc/.panel cards sit over the texture as usual. */
+section.band.textured{background-color:var(--bg); background-image:url(dither-tile.png); background-repeat:repeat;
+  border-top:1px solid var(--amber-dim); border-bottom:1px solid var(--amber-dim);}
+
+/* ── lists ──────────────────────────────────────────────── */
+ul.pts{list-style:none; padding:0; margin:1.2rem 0 0;}
+ul.pts li{position:relative; padding:.6rem 0 .6rem 1.4rem; color:var(--bone); font-size:14px;
+  border-bottom:1px solid #221d15;}
+ul.pts li::before{content:"▸"; position:absolute; left:0; color:var(--amber);}
+
+/* ── autonomy ───────────────────────────────────────────── */
+.meter-track{display:flex; align-items:end; justify-content:space-between; gap:.5rem; width:100%; margin-top:1rem;}
+@media(min-width:560px){.meter-track{justify-content:flex-start; gap:1.1rem;}}
+.slot{display:flex; flex-direction:column; align-items:center; gap:.25rem;}
+.slot .blk{font-size:16px; line-height:1;}
+.slot.dim .blk{color:var(--amber-low);} .slot.lit .blk{color:var(--amber);}
+.slot .num{font-size:10px; color:var(--amber-dim);} .slot.lit .num{color:var(--amber);}
+.tablewrap{overflow-x:auto; margin-top:1.4rem; border:1px solid var(--amber-low);}
+table.auto{border-collapse:collapse; width:100%; font-size:12.5px;}
+table.auto th,table.auto td{text-align:left; padding:.6rem .7rem; border-bottom:1px solid #221d15; vertical-align:top; word-break:break-word;}
+@media(max-width:559px){table.auto{font-size:11px;} table.auto th,table.auto td{padding:.45rem .4rem;} table.auto th{font-size:9px; letter-spacing:.05em;}}
+table.auto th{color:var(--amber-dim); text-transform:uppercase; letter-spacing:.1em; font-size:10px; font-weight:500;}
+table.auto td{color:var(--bone);}
+table.auto tr.cur td{background:#2a2010;}
+table.auto td .lv{color:var(--amber); font-weight:600;}
+table.auto .badge{color:var(--bg); background:var(--amber); font-size:9px; padding:1px 5px; letter-spacing:.1em; margin-left:.4rem;}
+
+/* ── CTA / forms ────────────────────────────────────────── */
+.panel{border:1px solid var(--amber-low); background:#120f0a; padding:1.3rem; margin-top:1.6rem;}
+.panel h3{color:var(--amber); font-size:11px; letter-spacing:.14em; text-transform:uppercase;}
+.panel .note{color:var(--amber-low); font-size:11px; margin:.4rem 0 0;}
+form.cap{display:flex; flex-direction:column; gap:.6rem; margin-top:.9rem;}
+form.cap input{background:var(--bg); border:1px solid var(--amber-low); color:var(--bone);
+  font-family:inherit; font-size:15px; padding:.75rem;}
+form.cap input::placeholder{color:var(--amber-low);}
+.btn{display:inline-block; text-align:center; background:var(--amber); color:var(--bg); border:none;
+  font-family:inherit; font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:12px;
+  padding:.85rem 1rem; cursor:pointer; text-decoration:none;}
+.btn.ghost{background:transparent; color:var(--amber); border:1px solid var(--amber);}
+.formmsg{color:var(--amber); font-size:12px; min-height:16px;}
+
+footer{border-top:1px solid var(--amber-dim); margin-top:1rem;}
+footer .wrap{padding-top:1.6rem; padding-bottom:2rem;}
+/* hackathon credits — footer is the right home for XPRIZE/Gemini/Devpost marks
+   (per phase2-landing.md: hackathon branding at the END, on near-black). */
+.credit-eyebrow{color:var(--amber-dim);}
+.creditblurb{font-size:11px; line-height:1.7; color:var(--amber-dim); max-width:62ch; margin:.6rem 0 0;}
+.creditblurb strong{color:var(--amber); font-weight:500;}
+.credits{display:flex; flex-wrap:wrap; align-items:center; gap:.9rem; margin:1.1rem 0 1.6rem;}
+.credit{display:inline-flex; align-items:center; gap:.45rem; color:var(--bone); font-size:12px;
+  letter-spacing:.04em; border:1px solid var(--amber-low); padding:.5rem .85rem; white-space:nowrap;}
+.credit .spark{color:var(--amber); font-size:13px;}
+.footnav{display:flex; justify-content:space-between; flex-wrap:wrap; gap:.6rem; padding-top:1.4rem;
+  border-top:1px solid #221d15; letter-spacing:.12em; text-transform:uppercase; font-size:10px; color:var(--amber-dim);}
+.footnav a{color:var(--amber-dim);}
+.footlinks{display:flex; gap:1.1rem; flex-wrap:wrap;}
+
+/* ── verification-overhead calculator (audience A, inline in #havework) ── */
+.calc{display:flex; flex-direction:column; border:1px solid var(--amber-low); background:#120f0a; margin-top:1.6rem;}
+/* flex children must be allowed to shrink below content size (else they overflow on mobile) */
+.calc-controls,.calc-result,.calc-row,.calc-label,.calc-big,.calc-bars,.calc-bar,.calc-barlbl,.calc-scale{min-width:0; max-width:100%;}
+.calc-range{box-sizing:border-box;}
+.calc-barlbl span:last-child,.calc-label .calc-val{white-space:nowrap;}
+.calc-barlbl span:first-child{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+@media(min-width:720px){.calc{flex-direction:row;}}
+.calc-controls{padding:1.3rem; border-bottom:1px solid var(--amber-low);}
+@media(min-width:720px){.calc-controls{flex:1; border-bottom:0; border-right:1px solid var(--amber-low);}}
+.calc-result{padding:1.3rem; display:flex; flex-direction:column; justify-content:space-between; gap:1.2rem;}
+@media(min-width:720px){.calc-result{flex:1;}}
+.calc-head h3{color:var(--amber); font-size:13px; letter-spacing:.06em; text-transform:uppercase;}
+.calc-sub{color:var(--amber-dim); font-size:11px; line-height:1.5; margin:.4rem 0 0;}
+.calc-row{margin-top:1.3rem;}
+.calc-label{display:flex; justify-content:space-between; align-items:center; margin-bottom:.5rem;}
+.calc-label label{color:var(--bone); font-size:12px;}
+.calc-val{color:var(--amber); font-size:12px; font-weight:600; border:1px solid var(--amber-low); padding:.1rem .45rem;}
+.calc-range{-webkit-appearance:none; appearance:none; width:100%; height:3px; background:var(--amber-low);
+  accent-color:var(--amber); cursor:pointer;}
+.calc-range::-webkit-slider-thumb{-webkit-appearance:none; appearance:none; width:14px; height:14px;
+  background:var(--amber); border:0; cursor:pointer;}
+.calc-range::-moz-range-thumb{width:14px; height:14px; background:var(--amber); border:0; cursor:pointer;}
+.calc-scale{display:flex; justify-content:space-between; font-size:9px; color:var(--amber-low);
+  margin-top:.3rem; letter-spacing:.05em;}
+.calc-note{font-size:10px; color:var(--amber-low); line-height:1.5; margin:1.3rem 0 0;}
+.calc-big{display:flex; align-items:baseline; flex-wrap:wrap; gap:.6rem; margin-top:.5rem;}
+#totalSavings{color:var(--amber); font-size:clamp(2rem,7vw,2.8rem); font-weight:600; line-height:1;}
+.calc-pct{color:var(--amber-dim); font-size:11px; border:1px solid var(--amber-low); padding:.15rem .5rem;}
+.calc-bars{margin-top:1.3rem; display:flex; flex-direction:column; gap:1rem;}
+.calc-barlbl{display:flex; justify-content:space-between; gap:.6rem; font-size:11px; color:var(--bone); margin-bottom:.35rem;}
+.calc-track{width:100%; background:#221d15; height:1.1rem; overflow:hidden;}
+.calc-fill{height:100%; transition:width .3s ease-out;}
+.calc-fill.alert{background:var(--alert);}
+.calc-fill.amber{background:var(--amber);}
+.calc-summary{font-size:11px; color:var(--amber-dim); line-height:1.6; border-top:1px solid var(--amber-low);
+  padding-top:1rem; margin:0;}
